@@ -6,9 +6,7 @@
   "scripts": {
     "start": "micro -p 5000",
     "dev": "nodemon --exec \"npm start\" -e \"js\"",
-    "test": "standard",
-    "deploy:staging": "bash ./deploy.sh stagin",
-    "deploy:production": "bash ./deploy.sh productio"
+    "test": "standard"
   },
   "repository": {
     "type": "git",
