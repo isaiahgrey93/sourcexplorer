@@ -1,0 +1,35 @@
+{
+  "name": "sourcexplorer-oauth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "micro -p 5000",
+    "dev": "nodemon --exec \"npm start\" -e \"js\"",
+    "test": "standard",
+    "deploy:staging": "bash ./deploy.sh stagin",
+    "deploy:production": "bash ./deploy.sh productio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mxstbr/micro-github.git"
+  },
+  "author": "Max Stoiber <contact@mxstbr.com> (http://mxstbr.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mxstbr/micro-github/issues"
+  },
+  "homepage": "https://github.com/mxstbr/micro-github.git#readme",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "dotenv": "^4.0.0",
+    "micro": "^6.2.1",
+    "micro-redirect": "^1.0.0",
+    "microrouter": "^2.0.1",
+    "uid-promise": "^0.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "standard": "^8.6.0"
+  }
+}
