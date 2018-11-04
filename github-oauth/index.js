@@ -23,7 +23,7 @@ const login = async (req, res) => {
   states.push(state);
   const { scope, allow_signup } = req.query;
   const query = {
-    client_id: process.env.GITHUB_CLIENT_ID,
+    client_id: process.env.REACT_APP_GITHUB_CLIENT_ID,
     state: state,
   };
   if (scope) query.scope = scope;
@@ -55,8 +55,8 @@ const callback = async (req, res) => {
         url: `https://${githubUrl}/login/oauth/access_token`,
         responseType: 'json',
         data: {
-          client_id: process.env.GITHUB_CLIENT_ID,
-          client_secret: process.env.GITHUB_CLIENT_SECRET,
+          client_id: process.env.REACT_APP_GITHUB_CLIENT_ID,
+          client_secret: process.env.REACT_APP_GITHUB_CLIENT_SECRET,
           code,
         },
       });
@@ -74,7 +74,7 @@ const callback = async (req, res) => {
     } catch (err) {
       redirectWithQueryString(res, {
         error:
-          'Please provide GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET as environment variables. (or GitHub might be down)',
+          'Please provide REACT_APP_GITHUB_CLIENT_ID and REACT_APP_GITHUB_CLIENT_SECRET as environment variables. (or GitHub might be down)',
       });
     }
   }

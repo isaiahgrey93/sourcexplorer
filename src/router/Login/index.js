@@ -1,22 +1,17 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 
-const LOGIN_URL = process.env.REACT_APP_OAUTH_SERVER_URL + '/login';
+const LOGIN_URL = `${process.env.REACT_APP_OAUTH_SERVER_URL}/login`;
 
 export default class Login extends PureComponent {
   componentDidMount() {
-    clearTimeout(this.delay);
-    this.delay = setTimeout(() => (window.location.href = LOGIN_URL), 1000);
-  }
+    if (localStorage.getItem('github')) {
+      return this.props.history.replace('/dashboard');
+    }
 
-  componentWillUnmount() {
-    clearTimeout(this.delay);
+    window.location.href = LOGIN_URL;
   }
 
   render() {
-    return (
-      <div>
-        <div>Redirecting...</div>
-      </div>
-    );
+    return null;
   }
 }

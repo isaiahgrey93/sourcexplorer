@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 import Login from './Login';
+import Authenticate from './Authenticate';
 import NotFound from './NotFound';
 
 const Router = () => (
@@ -16,11 +17,20 @@ const Router = () => (
             <div>
               <Link to="/login">Login</Link>
             </div>
-            <div>{JSON.stringify(process.env, null, 4)}</div>
           </div>
         )}
       />
+      <Route path={'/authenticate'} component={Authenticate} />
       <Route path={'/login'} component={Login} />
+      <Route
+        path={'/dashboard'}
+        render={() => (
+          <div>
+            dashboard
+            {localStorage.getItem('github')}
+          </div>
+        )}
+      />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
