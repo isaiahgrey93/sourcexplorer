@@ -12,8 +12,8 @@ const githubUrl = process.env.GH_HOST || 'github.com';
 const states = [];
 
 const redirectWithQueryString = (res, data) => {
-  const location = `${process.env.CLIENT_URL}${
-    process.env.OAUTH_REDIRECT_PATH
+  const location = `${process.env.REACT_APP_CLIENT_URL}${
+    process.env.REACT_APP_OAUTH_REDIRECT_PATH
   }?${querystring.stringify(data)}`;
   redirect(res, 302, location);
 };

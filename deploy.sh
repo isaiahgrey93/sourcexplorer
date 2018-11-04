@@ -17,7 +17,10 @@ else
 
     deployment=`pbpaste`
 
-    alias=$(grep OAUTH_SERVER_URL ../$env | cut -d '=' -f2)
+    echo deployment
+    echo $deployment
+
+    alias=$(grep REACT_APP_OAUTH_SERVER_URL ../$env | cut -d '=' -f2)
 
     now alias $deployment $alias
 
@@ -25,19 +28,18 @@ else
 
     rm -rf ./build
 
-    yarn build
+    yarn build:$1
 
     cd build
 
-
-    client=$(grep CLIENT_URL ../$env | cut -d '=' -f2)
+    client=$(grep REACT_APP_CLIENT_URL ../$env | cut -d '=' -f2)
 
     cp index.html 200.html
     cp index.html 404.html
 
     echo | surge --domain $client
 
-    open "$alias/login"
+    open $client
 fi
 
 
