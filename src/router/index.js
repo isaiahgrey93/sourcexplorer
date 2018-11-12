@@ -1,38 +1,40 @@
-import React from 'react';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Login from './Login';
-import Authenticate from './Authenticate';
+import AuthRouter from './AuthRouter';
 import NotFound from './NotFound';
+
+import Explorer from './Explorer';
+
+import { AppNavbar, MarketingNavbar } from '../components';
+
+const Guest = () => <div>Welcome, Guest</div>;
+
+const Authenticated = () => <div>Welcome, User</div>;
 
 const Router = () => (
   <BrowserRouter>
-    <Switch>
-      <Route
-        exact
-        path={'/'}
-        render={() => (
-          <div>
-            <div>Home</div>
-            <div>
-              <Link to="/login">Login</Link>
-            </div>
-          </div>
-        )}
-      />
-      <Route path={'/authenticate'} component={Authenticate} />
-      <Route path={'/login'} component={Login} />
-      <Route
-        path={'/dashboard'}
-        render={() => (
-          <div>
-            dashboard
-            {localStorage.getItem('github')}
-          </div>
-        )}
-      />
-      <Route component={NotFound} />
-    </Switch>
+    <AuthRouter
+      guest={() => (
+        <Fragment>
+          <MarketingNavbar />
+          <Switch>
+            <Route exact path={'/'} component={Guest} />
+            <Route component={NotFound} />
+          </Switch>
+        </Fragment>
+      )}
+      authenticated={() => (
+        <Fragment>
+          <AppNavbar />
+          <Switch>
+            <Route exact path={'/'} component={Authenticated} />
+            <Route exact path={'/:username/:repository'} component={Explorer} />
+            <Route component={NotFound} />
+          </Switch>
+        </Fragment>
+      )}
+    />
   </BrowserRouter>
 );
 
